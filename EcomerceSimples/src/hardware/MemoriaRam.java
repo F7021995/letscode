@@ -1,54 +1,39 @@
 package hardware;
 
-import java.util.Arrays;
+import categorias.abstracoes.Produto;
+import categorias.enums.MemoriaUsadaEm;
+import categorias.interfaces.Hardware;
 
-public class MemoriaRam {
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-    enum UsadaEm {
-        COMPUTADOR,
-        NOTEBOOK;
+public class MemoriaRam extends Produto<MemoriaRam> implements Hardware {
+
+    private static final Set<String> tiposMemoria = new HashSet<>(List.of("DDR3", "DDR4", "DDR5"));
+    private static final Set<Integer> velocidadeMemoria = new HashSet<>(List.of(2100, 2400, 3200, 3300));
+    private int capacidade;
+    private int velocidade;
+    private String tipo;
+    private MemoriaUsadaEm memoriaUsadaEm;
+
+    public MemoriaRam(String marca, String modelo, BigDecimal preco,
+                      int capacidade, int velocidade,
+                      String tipo, MemoriaUsadaEm memoriaUsadaEm) throws Exception {
+        super(marca, modelo, preco);
+        this.setCapacidade(capacidade)
+                .setVelocidade(velocidade)
+                .setTipo(tipo)
+                .setUsadaEm(memoriaUsadaEm);
     }
 
-    String marca;
-    String modelo;
-    UsadaEm usadaEm;
-    int capacidade;
-    int frequencia;
-    String tipo;
-
-    public MemoriaRam(String marca, String modelo, int capacidade, int frequencia, String tipo, UsadaEm usadaEm) {
-        this.marca = marca;
-        this.modelo = modelo;
-        this.capacidade = capacidade;
-        this.frequencia = frequencia;
-        this.tipo = tipo;
-        this.usadaEm = usadaEm;
+    public MemoriaUsadaEm getUsadaEm() {
+        return memoriaUsadaEm;
     }
 
-    public String getMarca() {
-        return marca;
-    }
-
-    public MemoriaRam setMarca(String marca) {
-        this.marca = marca;
-        return this;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public MemoriaRam setModelo(String modelo) {
-        this.modelo = modelo;
-        return this;
-    }
-
-    public UsadaEm getUsadaEm() {
-        return usadaEm;
-    }
-
-    public MemoriaRam setUsadaEm(UsadaEm usadaEm) {
-        this.usadaEm = usadaEm;
+    public MemoriaRam setUsadaEm(MemoriaUsadaEm memoriaUsadaEm) {
+        this.memoriaUsadaEm = memoriaUsadaEm;
         return this;
     }
 
@@ -60,17 +45,32 @@ public class MemoriaRam {
         if (!ehPotenciaDois(capacidade)) {
             throw new Exception("RAM deve ser 4, 8, 16, 32...");
         }
-
         this.capacidade = capacidade;
         return this;
     }
 
-    public int getFrequencia() {
-        return frequencia;
+    /**
+     * Capacidade da memória são números potência de 2.
+     * Usando bitwise para dizer se é potencia de 2.
+     * Se n & n-1 for 0000 (binário): temos uma potência de 2.
+     */
+    private boolean ehPotenciaDois(int valor) {
+        return (valor & valor - 1) == 0;
     }
 
-    public MemoriaRam setFrequencia(int frequencia) {
-        this.frequencia = frequencia;
+    public String getVelocidade() {
+        return velocidade + " Mhz";
+    }
+
+    /**
+     * Tenho que ver as velocidade das memórias.
+     */
+    public MemoriaRam setVelocidade(int velocidade) throws IllegalArgumentException {
+        if (!MemoriaRam.velocidadeMemoria.contains(velocidade)) {
+            throw new IllegalArgumentException("Nossas velocidades de ram são apenas 2100, 2400 e 3200");
+        }
+
+        this.velocidade = velocidade;
         return this;
     }
 
@@ -78,20 +78,16 @@ public class MemoriaRam {
         return tipo;
     }
 
+    /**
+     * Tipo de memória só pode ser DDR3, DDR4, DDR5.
+     */
     public MemoriaRam setTipo(String tipo) throws Exception {
-        if (!Arrays.asList("DDR3", "DDR4", "DDR5").contains(tipo)) {
-            throw new Exception("DDR3, DDR4 ou DDR5");
+        if (!tiposMemoria.contains(tipo.toUpperCase().trim())) {
+            throw new Exception("Só trabalhamos com memória do tipo: DDR3, DDR4 ou DDR5");
         }
 
-        this.tipo = tipo;
+        this.tipo = tipo.toUpperCase().trim();
         return this;
     }
 
-    /**
-     * Usando bitwise para dizer se é potencia de 2
-     * Se n & n-1 for 0000 (binário): temos uma potência de 2.
-     */
-    private boolean ehPotenciaDois(int valor) {
-        return (valor & valor-1) == 0;
-    }
 }
