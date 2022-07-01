@@ -2,7 +2,6 @@ import static java.lang.System.out;
 import static java.lang.Math.sqrt;
 
 public class SystemOutFacil {
-
     public static void main(String[] args) {
         String[] nomes = {"A", "B", "C", "D", "E"};
         Double[] pesos = {70.3, 55.6, 65.0, 80.0, 90.0};
