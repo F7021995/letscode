@@ -1,11 +1,5 @@
-import br.com.banco.conta.Conta;
-import br.com.banco.conta.ContaPoupanca;
-import br.com.banco.pessoa.PessoaFisica;
-
-import static br.com.banco.testes.Falhas.*;
 import static br.com.banco.testes.Corretos.*;
-
-import java.util.List;
+import static br.com.banco.testes.Falhas.*;
 
 public class Aplicacao {
 
