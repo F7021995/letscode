@@ -8,19 +8,20 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 public abstract class Conta implements OperacoesComunsContas {
-    private static int totalDeContas = 0;
+
     protected Pessoa pessoa;
+    private int agencia;
     protected BigDecimal saldo;
     protected int numeroConta;
-    private int agencia;
+    private static int totalDeContas = 0;
 
     public Conta(Pessoa pessoa, int agencia) {
         // Fiz invertido essa porra... Era pra ser !Conta.ehNumeroAgenciaValido() return;
-        if (Conta.ehNumeroAgenciaValido(agencia)) {
+        if(Conta.ehNumeroAgenciaValido(agencia)) {
             this.agencia = agencia;
         }
 
-        if (Conta.ehUmObjetoPessoaValido(pessoa)) {
+        if(Conta.ehUmObjetoPessoaValido(pessoa)) {
             this.pessoa = pessoa;
         }
 
@@ -28,30 +29,6 @@ public abstract class Conta implements OperacoesComunsContas {
 
         totalDeContas++;
     }
-
-    private static boolean ehNumeroAgenciaValido(int agencia) {
-        if (agencia < 1000 || agencia > 10000) {
-            System.err.println("Código inválido de agência (1000 até 10000).");
-            return false;
-        }
-
-        return true;
-    }
-
-    private static boolean ehUmObjetoPessoaValido(Pessoa pessoa) {
-        if (pessoa == null) {
-            System.err.println("Objeto pessoa não é válido.");
-            return false;
-        }
-
-        return true;
-    }
-
-    public static int getTotalDeContas() {
-        return totalDeContas;
-    }
-
-    // ******************************************** Métodos verificadores:
 
     // ******************************************** Funcionalidades da Classe:
     @Override
@@ -69,7 +46,8 @@ public abstract class Conta implements OperacoesComunsContas {
 
         if (this.pessoa instanceof PessoaJuridica) {
             subtrairDinheiroComTaxasPessoasJuridicas(valorSaque);
-        } else {
+        }
+        else {
             subtrairDinheiroPessoasFisicas(valorSaque);
         }
     }
@@ -96,12 +74,12 @@ public abstract class Conta implements OperacoesComunsContas {
         if (this.pessoa instanceof PessoaJuridica) {
             destino.depositar(valorTransferencia);
             subtrairDinheiroComTaxasPessoasJuridicas(valorTransferencia);
-        } else {
+        }
+        else {
             destino.depositar(valorTransferencia);
             subtrairDinheiroPessoasFisicas(valorTransferencia);
         }
     }
-
     @Override
     public void depositar(BigDecimal valorDeposito) {
         if (valorDeposito.compareTo(BigDecimal.ZERO) <= 0) {
@@ -115,7 +93,27 @@ public abstract class Conta implements OperacoesComunsContas {
         this.saldo = this.saldo.setScale(2, RoundingMode.HALF_UP);
     }
 
+    // ******************************************** Métodos verificadores:
+
     protected abstract boolean ehNumeroContaValidoParaTipoConta(int numeroConta);
+
+    private static boolean ehNumeroAgenciaValido(int agencia) {
+        if (agencia < 1000 || agencia > 10000) {
+            System.err.println("Código inválido de agência (1000 até 10000).");
+            return false;
+        }
+
+        return true;
+    }
+
+    private static boolean ehUmObjetoPessoaValido(Pessoa pessoa) {
+        if (pessoa == null) {
+            System.err.println("Objeto pessoa não é válido.");
+            return false;
+        }
+
+        return true;
+    }
 
     private boolean estaTransferindoParaSiProprio(Conta conta) {
         if (this.equals(conta)) {
@@ -143,7 +141,7 @@ public abstract class Conta implements OperacoesComunsContas {
 
         System.err.println("Saldo insuficiente.");
         return true;
-    }
+    }    
 
     // ******************************************** Getters and Setters:
     public BigDecimal consultarSaldo() {
@@ -151,15 +149,19 @@ public abstract class Conta implements OperacoesComunsContas {
     }
 
     public void setAgencia(int agencia) {
-        if (Conta.ehNumeroAgenciaValido(agencia)) {
+        if(Conta.ehNumeroAgenciaValido(agencia)) {
             this.agencia = agencia;
         }
+    }
+
+    public static int getTotalDeContas() {
+        return totalDeContas;
     }
 
     // ******************************************** Métodos da Classe Object:
 
     /**
-     * Usado para não permitir transferir para si próprio.
+     *  Usado para não permitir transferir para si próprio.
      */
     @Override
     public boolean equals(Object o) {
@@ -169,7 +171,10 @@ public abstract class Conta implements OperacoesComunsContas {
 
         Conta conta = (Conta) o;
 
-        return numeroConta == conta.numeroConta && agencia == conta.agencia && saldo.equals(conta.saldo) && pessoa.equals(conta.pessoa);
+        return numeroConta == conta.numeroConta &&
+                agencia == conta.agencia &&
+                saldo.equals(conta.saldo) &&
+                pessoa.equals(conta.pessoa);
     }
 
     @Override
@@ -179,7 +184,10 @@ public abstract class Conta implements OperacoesComunsContas {
 
     @Override
     public String toString() {
-        return "Conta{" + "agencia=" + agencia + ", saldo=" + saldo + ", pessoa=" + pessoa + '}';
+        return "Conta{" +
+                "agencia=" + agencia +
+                ", saldo=" + saldo +
+                ", pessoa=" + pessoa +
+                '}';
     }
-
 }

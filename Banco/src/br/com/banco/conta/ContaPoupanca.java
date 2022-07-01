@@ -4,8 +4,8 @@ import br.com.banco.pessoa.Pessoa;
 import br.com.banco.pessoa.PessoaJuridica;
 
 public class ContaPoupanca extends Conta {
-    public final static String TIPODECONTA = "Conta Poupança";
     private static int totalDeContasPoupanca = 0;
+    public final static String TIPODECONTA = "Conta Poupança";
 
     public ContaPoupanca(Pessoa pessoa, int agencia, int numeroConta) {
         super(pessoa, agencia);
@@ -22,10 +22,6 @@ public class ContaPoupanca extends Conta {
         totalDeContasPoupanca++;
     }
 
-    public static int getTotalDeContasPoupanca() {
-        return totalDeContasPoupanca;
-    }
-
     @Override
     protected boolean ehNumeroContaValidoParaTipoConta(int numeroConta) {
         if (numeroConta < 300_000 || numeroConta > 400_000) {
@@ -34,6 +30,10 @@ public class ContaPoupanca extends Conta {
         }
 
         return true;
+    }
+
+    public static int getTotalDeContasPoupanca() {
+        return totalDeContasPoupanca;
     }
 
 }
