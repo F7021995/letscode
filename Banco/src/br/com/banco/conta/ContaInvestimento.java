@@ -6,24 +6,26 @@ import br.com.banco.pessoa.PessoaJuridica;
 import java.math.BigDecimal;
 
 public class ContaInvestimento extends Conta implements OperacoesContaInvestidor {
-
-    private BigDecimal saldoInvestido;
+    // Pode ser público... é final
+    public final static String TIPODECONTA = "Conta Investimento";
     private static final BigDecimal PORCENTAGEM_PESSOAS = BigDecimal.valueOf(1.02);
     private static final BigDecimal PORCENTAGEM_EMPRESAS = PORCENTAGEM_PESSOAS.add(BigDecimal.valueOf(0.02));
     private static int totalDeContasInvestimentos = 0;
-    
-    // Pode ser público... é final
-    public final static String TIPODECONTA = "Conta Investimento";
+    private BigDecimal saldoInvestido;
 
     public ContaInvestimento(Pessoa pessoa, int agencia, int numeroConta) {
         super(pessoa, agencia);
 
-        if(this.ehNumeroContaValidoParaTipoConta(numeroConta)) {
+        if (this.ehNumeroContaValidoParaTipoConta(numeroConta)) {
             super.numeroConta = numeroConta;
         }
 
         this.saldoInvestido = BigDecimal.ZERO;
         totalDeContasInvestimentos++;
+    }
+
+    public static int getTotalDeContasInvestimentos() {
+        return totalDeContasInvestimentos;
     }
 
     @Override
@@ -32,8 +34,7 @@ public class ContaInvestimento extends Conta implements OperacoesContaInvestidor
             // investir não é o mesmo que sacar... sacar pessoa jurídica tem taxas.
             if (pessoa instanceof PessoaJuridica) {
                 super.saldo = super.saldo.subtract(valorInvestimento);
-            }
-            else {
+            } else {
                 super.sacar(valorInvestimento);
             }
             this.saldoInvestido = valorInvestimento;
@@ -78,13 +79,9 @@ public class ContaInvestimento extends Conta implements OperacoesContaInvestidor
         if (numeroConta < 500_000 || numeroConta > 600_000) {
             System.err.println("Contas de investimentos vão de 500.000 a 600.000");
             return false;
-        }  
+        }
 
         return true;
-    }
-
-    public static int getTotalDeContasInvestimentos() {
-        return totalDeContasInvestimentos;
     }
 
     public BigDecimal getSaldoInvestido() {
