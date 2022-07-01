@@ -1,6 +1,6 @@
 import static java.lang.System.out;
 
-public class f_DesafioMatriz {
+public class DesafioMatriz {
 
     public static void main(String[] args) {
         int[][] matriz = {{3, 4, 5}, {3, 7, 8}, {9, 6, 2}};

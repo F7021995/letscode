@@ -1,6 +1,6 @@
 import static java.lang.System.out;
 
-public class d_InfinitosArgumentos {
+public class InfinitosArgumentos {
 
     public static void main(String[] args) {
         testarArgumentos(1, new int[]{1, 2, 3, 4, 5, 6});

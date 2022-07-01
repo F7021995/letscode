@@ -1,6 +1,6 @@
 import static java.lang.System.out;
 
-public class e_PrintVirgulaFacil {
+public class PrintVirgulaFacil {
 
     public static void main(String[] args) {
         String[] frutas = {"Abacaxi", "Maça", "Pera", "Tomate", "Mamão"};

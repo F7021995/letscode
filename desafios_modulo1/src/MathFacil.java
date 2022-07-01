@@ -1,6 +1,6 @@
 import static java.lang.Math.*;
 
-public class c_MathFacil {
+public class MathFacil {
 
     void programaMuitoMath() {
         double b = sqrt(64) * abs(-40);

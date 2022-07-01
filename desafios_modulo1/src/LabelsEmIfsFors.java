@@ -1,4 +1,4 @@
-public class a_LabelsEmBlocos {
+public class LabelsEmIfsFors {
 
     /**
      * Label em um for... útil quando for da break.
