@@ -1,4 +1,4 @@
-public class dIntervaloSoma {
+public class IntervaloSoma {
 
     public static void main(String[] args) {
         valoresIntervalo(1, 2);

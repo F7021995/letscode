@@ -2,7 +2,7 @@ import java.security.SecureRandom;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class bListaUnicaOrdenada {
+public class ListaUnicaOrdenada {
 
     /**
      * Achei que era para fazer uma List<> com valores únicos.
@@ -20,8 +20,8 @@ public class bListaUnicaOrdenada {
          * Os elementos da lista são também aleatórios, só que de 0 até qtdElementos (que foi gerado aleatoriamente)
          */
 
-        List<Integer> lista1 = new bListaUnicaOrdenada().inicializarUmaLista(qtdElementos);
-        List<Integer> lista2 = new bListaUnicaOrdenada().inicializarUmaLista(qtdElementos);
+        List<Integer> lista1 = new ListaUnicaOrdenada().inicializarUmaLista(qtdElementos);
+        List<Integer> lista2 = new ListaUnicaOrdenada().inicializarUmaLista(qtdElementos);
         imprimirListasOriginais(lista1, lista2);
 
         // Juntando as listas e imprimir antes e depois.

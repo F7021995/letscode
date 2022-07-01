@@ -3,7 +3,7 @@ import java.math.RoundingMode;
 import java.util.Map;
 import java.util.HashMap;
 
-public class fConversorMoedas {
+public class ConversorMoedas {
 
     public static void main(String[] args) {
         Map<String, BigDecimal> dolarMap = new HashMap<>();

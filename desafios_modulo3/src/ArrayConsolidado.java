@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class eArrayConsolidado {
+public class ArrayConsolidado {
 
     public static void main(String[] args) {
         int[] array1 = {1, 3, 5};

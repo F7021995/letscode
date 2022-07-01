@@ -4,7 +4,7 @@
  * Exemplo: frdts2XXX6xxbl2XXXeee5 *
  * Retorna true pois a String possui a combinação "2XXX6" (Sequencia de 3 "X" entre os números 6 e 2 que somam 8).
  */
-public class aBuscarPatternEmString {
+public class BuscarPatternEmString {
     /*
      *  .*      -> pode ter qualquer coisa antes.
      *  \\d     -> tem que ter um dígito antes do x.

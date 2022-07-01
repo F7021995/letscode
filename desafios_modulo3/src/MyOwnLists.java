@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class cMyOwnLists {
+public class MyOwnLists {
 
     /**
      *  Objetivo desse método: transformar um array genérico em uma lista genérica ordenada.
@@ -23,10 +23,10 @@ public class cMyOwnLists {
      */
     public static void main(String[] args) {
         // Teste usando o mesmo método para ordenar classes diferentes.
-        List<String> strings = cMyOwnLists.asListedSorted(new String[]{"ba2", "se123a", "ac"}, Comparator.naturalOrder());
+        List<String> strings = MyOwnLists.asListedSorted(new String[]{"ba2", "se123a", "ac"}, Comparator.naturalOrder());
         System.out.println(strings);
 
-        List<Integer> numeros = cMyOwnLists.asListedSorted(new Integer[]{3, 5, 1, 2, 3, 4}, Comparator.reverseOrder());
+        List<Integer> numeros = MyOwnLists.asListedSorted(new Integer[]{3, 5, 1, 2, 3, 4}, Comparator.reverseOrder());
         System.out.println(numeros);
 
         // Diferentes formas de ordenação.
@@ -46,7 +46,7 @@ public class cMyOwnLists {
     static void ordenarComClasseAnonima() {
         // Ordenar usando classe anônima.
         List<Emprego> empregadoList =
-                cMyOwnLists.asListedSorted(
+                MyOwnLists.asListedSorted(
                         new Emprego[]{new Emprego(3), new Emprego(1)},
                         new Comparator<Emprego>() {
                             @Override
@@ -61,7 +61,7 @@ public class cMyOwnLists {
     static void ordenarImplementandoAsInterfaces() {
         // Ordenando crescente.
         List<Emprego> empregadoList =
-                cMyOwnLists.asListedSorted(
+                MyOwnLists.asListedSorted(
                         new Emprego[]{new Emprego(3), new Emprego(1)},
                         new Comparator<Emprego>() {
                             @Override
@@ -86,7 +86,7 @@ public class cMyOwnLists {
     static void ordenarLambdasOuReference() {
         // Ordenar usando lambda.
         List<Emprego> empregadoList1 =
-                cMyOwnLists.asListedSorted(
+                MyOwnLists.asListedSorted(
                         new Emprego[]{new Emprego(3), new Emprego(1)},
                         (e1, e2) -> Integer.compare(e1.getCodigo(), e2.getCodigo())
                 );
@@ -95,14 +95,14 @@ public class cMyOwnLists {
         // Não use 'Comparator.comparing' para ordenar inteiros...
         // Ele usa boxing e unboxing sem necessidade.
         List<Emprego> empregadoList2 =
-                cMyOwnLists.asListedSorted(
+                MyOwnLists.asListedSorted(
                         new Emprego[]{new Emprego(3), new Emprego(1)},
                         Comparator.comparing(Emprego::getCodigo)
                 );
 
         // Esse é o Comparator para comparar inteiros. Comparator.comparingint
         List<Emprego> empregadoList3 =
-                cMyOwnLists.asListedSorted(
+                MyOwnLists.asListedSorted(
                         new Emprego[]{new Emprego(3), new Emprego(1)},
                         Comparator.comparingInt(Emprego::getCodigo)
                 );
