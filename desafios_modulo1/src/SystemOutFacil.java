@@ -1,7 +1,7 @@
 import static java.lang.System.out;
 import static java.lang.Math.sqrt;
 
-public class b_MuitoSystemOutFacil {
+public class SystemOutFacil {
 
     public static void main(String[] args) {
         String[] nomes = {"A", "B", "C", "D", "E"};
