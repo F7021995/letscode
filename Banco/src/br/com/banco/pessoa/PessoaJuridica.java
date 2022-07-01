@@ -1,20 +1,18 @@
 package br.com.banco.pessoa;
 
-import javax.naming.directory.InvalidAttributeValueException;
-
 public class PessoaJuridica extends Pessoa {
-    private String cnpj;
     private static final String REGEXNOMEFANTASIA = "[A-Z][a-zA-Zà-úÀ-Ú]*(-[A-Z][a-zA-Zà-úÀ-Ú]*)?$";
     private static final String REGEXCNPJ = "\\d{14}";
+    private String cnpj;
 
     // ******************************************** Construtores
     public PessoaJuridica(String nome, String cnpj) {
         // Se forem nulos nem cria o construtor, dá mensagem de erro.
-        if(ehNomeCorreto(nome)) {
+        if (ehNomeCorreto(nome)) {
             this.nome = nome;
         }
 
-        if(ehCnpjCorreto(cnpj)) {
+        if (ehCnpjCorreto(cnpj)) {
             this.cnpj = cnpj;
         }
     }
@@ -23,12 +21,13 @@ public class PessoaJuridica extends Pessoa {
     private static boolean ehNomeCorreto(String nome) {
         return !(Pessoa.ehNomeVazio(nome) || PessoaJuridica.ehNomeInvalido(nome));
     }
+
     private static boolean ehCnpjCorreto(String cnpj) {
         return !(ehCnpjVazio(cnpj) || ehCnpjInvalido(cnpj));
     }
 
     private static boolean ehNomeInvalido(String nome) {
-        if(!nome.matches(PessoaJuridica.REGEXNOMEFANTASIA)) {
+        if (!nome.matches(PessoaJuridica.REGEXNOMEFANTASIA)) {
             System.err.println("Digite um nome fantasia válido");
             return true;
         }
@@ -36,27 +35,29 @@ public class PessoaJuridica extends Pessoa {
         // isso indica que é válido, eu busco se é inválido.
         return false;
     }
+
     private static boolean ehCnpjVazio(String cnpj) {
-        if(Pessoa.ehStringVazia(cnpj)) {
+        if (Pessoa.ehStringVazia(cnpj)) {
             System.err.println("CNPJ não pode ser vazio.");
             return true;
         }
 
         return ehStringVazia(cnpj);
     }
+
     private static boolean ehCnpjInvalido(String cnpj) {
-        if(cnpj.length() != 14) {
+        if (cnpj.length() != 14) {
             System.err.println("CNPJ possui 14 dígitos. Digite 14 dígitos no CNPJ.");
             return true;
             // indica que é inválido, que é retorno true
         }
 
-        if(Pessoa.ehStringVazia(cnpj)) {
+        if (Pessoa.ehStringVazia(cnpj)) {
             System.err.println("CNPJ não pode ser vazio.");
             return true;
         }
 
-        if(!cnpj.matches(PessoaJuridica.REGEXCNPJ)) {
+        if (!cnpj.matches(PessoaJuridica.REGEXCNPJ)) {
             System.err.println("CNPJ só pode conter números.");
             return true;
         }
@@ -65,27 +66,27 @@ public class PessoaJuridica extends Pessoa {
         return false;
     }
 
-    // ******************************************** Getters and Setters
-    @Override
-    public void setNome(String nome) {
-        if(PessoaJuridica.ehNomeCorreto(nome)) {
-            this.nome = nome;
-        }
-    }
-
     @Override
     public String getNome() {
         return nome;
     }
 
-    public void setCnpj(String cnpj) {
-        if(PessoaJuridica.ehCnpjCorreto((cnpj))) {
-            this.cnpj = cnpj;
+    // ******************************************** Getters and Setters
+    @Override
+    public void setNome(String nome) {
+        if (PessoaJuridica.ehNomeCorreto(nome)) {
+            this.nome = nome;
         }
     }
 
     public String getCnpj() {
         return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        if (PessoaJuridica.ehCnpjCorreto((cnpj))) {
+            this.cnpj = cnpj;
+        }
     }
 
 }
