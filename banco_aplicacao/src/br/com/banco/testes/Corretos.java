@@ -74,10 +74,10 @@ public class Corretos {
 
         System.out.println("Investimento de uma Pessoa Física (renda 2%)");
         inJoao.depositar(BigDecimal.valueOf(600));
-        System.out.println("Saldo: "  + inJoao.consultarSaldo());
+        System.out.println("Saldo: " + inJoao.consultarSaldo());
 
         inJoao.investir(BigDecimal.valueOf(600));
-        System.out.println("Saldo Normal: "  + inJoao.consultarSaldo());
+        System.out.println("Saldo Normal: " + inJoao.consultarSaldo());
         System.out.println("Saldo Investido: " + inJoao.getSaldoInvestido());
 
         inJoao.resgatarInvestimento();
@@ -93,10 +93,10 @@ public class Corretos {
 
         System.out.println("Investimento de uma Pessoa Jurídica (renda 4%)");
         inJoao.depositar(BigDecimal.valueOf(600));
-        System.out.println("Saldo: "  + inJoao.consultarSaldo());
+        System.out.println("Saldo: " + inJoao.consultarSaldo());
 
         inJoao.investir(BigDecimal.valueOf(600));
-        System.out.println("Saldo Normal: "  + inJoao.consultarSaldo());
+        System.out.println("Saldo Normal: " + inJoao.consultarSaldo());
         System.out.println("Saldo Investido: " + inJoao.getSaldoInvestido());
 
         inJoao.resgatarInvestimento();

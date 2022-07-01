@@ -1,17 +1,17 @@
 package br.com.banco.pessoa;
 
 public class PessoaFisica extends Pessoa {
-    private String cpf;
     private static final String REGEXNOMEPESSOA = "[A-ZÀ-Ú][a-zà-ú]*";
     private static final String REGEXCPF = "\\d{11}";
+    private String cpf;
 
     // Construtores
     public PessoaFisica(String nome, String cpf) {
-        if(ehNomeCorreto(nome)) {
+        if (ehNomeCorreto(nome)) {
             super.nome = nome;
         }
 
-        if(ehCpfInvalido(cpf)) {
+        if (ehCpfInvalido(cpf)) {
             this.cpf = cpf;
         }
     }
@@ -27,7 +27,7 @@ public class PessoaFisica extends Pessoa {
     }
 
     private static boolean ehUmNomeInvalido(String nome) {
-        if(!nome.matches(PessoaFisica.REGEXNOMEPESSOA)) {
+        if (!nome.matches(PessoaFisica.REGEXNOMEPESSOA)) {
             System.err.println("Digite um primeiro nome válido.");
             return true;
         }
@@ -36,18 +36,18 @@ public class PessoaFisica extends Pessoa {
     }
 
     private static boolean ehCpfInvalido(String cpf) {
-        if(cpf == null || cpf.length() != 11) {
+        if (cpf == null || cpf.length() != 11) {
             System.err.println("Digite um CPF com 11 números.");
             return true;
             // indica que é inválido, que o retorno é true.
         }
 
-        if(Pessoa.ehStringVazia(cpf)) {
+        if (Pessoa.ehStringVazia(cpf)) {
             System.err.println("CPF vazio, digite algo.");
             return true;
         }
 
-        if(!cpf.matches(PessoaFisica.REGEXCPF)) {
+        if (!cpf.matches(PessoaFisica.REGEXCPF)) {
             System.err.println("CPF só pode conter números, não digite outra coisa.");
             return true;
         }
@@ -55,23 +55,14 @@ public class PessoaFisica extends Pessoa {
         return false;
     }
 
-
-    // ******************************************** Getters e Setters
-    public void setCpf(String cpf) {
-        if(ehCpfCorreto(cpf)) {
-            this.cpf = cpf;
-        }
-    }
-
     public String getCpf() {
         return cpf;
     }
 
-    @Override
-    public void setNome(String nome) {
-        // supostas verificações nome de pessoas físicas.
-        if(ehNomeCorreto(nome)) {
-            super.nome = nome;
+    // ******************************************** Getters e Setters
+    public void setCpf(String cpf) {
+        if (ehCpfCorreto(cpf)) {
+            this.cpf = cpf;
         }
     }
 
@@ -80,13 +71,18 @@ public class PessoaFisica extends Pessoa {
         return super.nome;
     }
 
+    @Override
+    public void setNome(String nome) {
+        // supostas verificações nome de pessoas físicas.
+        if (ehNomeCorreto(nome)) {
+            super.nome = nome;
+        }
+    }
+
     // ******************************************** Métodos classe Object
     @Override
     public String toString() {
-        return "PessoaFisica{" +
-                "cpf='" + cpf + '\'' +
-                ", nome='" + super.nome + '\'' +
-                '}';
+        return "PessoaFisica{" + "cpf='" + cpf + '\'' + ", nome='" + super.nome + '\'' + '}';
     }
 
 }
