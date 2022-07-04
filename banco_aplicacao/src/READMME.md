@@ -7,11 +7,11 @@
 > **Contas das Pessoas Físicas:**
 > - [x] Conta Corrente.
 > - [x] Conta Poupança.
-> - [x] Conta Investimento. 
+> - [x] Conta investimento. 
 
 > **Contas das Pessoas Jurídicas:**
 > - [x] Conta Corrente.
-> - [x] Conta Investimento.
+> - [x] Conta investimento.
 >> Proibição para as Pessoas Jurídicas:
 >> - **<span style="color:#FF2400">PROIBIDO</span>:** <ins>**CONTA POUPANÇA**</ins> para PJs.
 
