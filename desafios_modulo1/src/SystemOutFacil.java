@@ -1,7 +1,12 @@
-import static java.lang.System.out;
 import static java.lang.Math.sqrt;
+import static java.lang.System.out;
 
 public class SystemOutFacil {
+
+    /**
+     * import static java.lang.System.out;
+     * Permite fazer: out.println() ao invés de System.out.println()
+     */
     public static void main(String[] args) {
         String[] nomes = {"A", "B", "C", "D", "E"};
         Double[] pesos = {70.3, 55.6, 65.0, 80.0, 90.0};
@@ -16,7 +21,7 @@ public class SystemOutFacil {
 
             Double imc = pessoas[i].getPeso() / sqrt(pessoas[i].getAltura());
 
-            if(imc < 18.5 || imc > 25) {
+            if (imc < 18.5 || imc > 25) {
                 out.printf("%s seu IMC é %.1f %n", pessoas[i].getNome(), imc);
                 out.println("Você não possui IMC ideal (entre 18.5 e 25)");
             }
@@ -37,12 +42,7 @@ public class SystemOutFacil {
 
 class Pessoa {
 
-
     public void setNome(String nome) {
-    }
-
-    public void setIdade(int idade) {
-
     }
 
     public void setPeso(Double peso) {
@@ -62,5 +62,5 @@ class Pessoa {
 
     public void setAltura(Double altura) {
     }
-}
 
+}
