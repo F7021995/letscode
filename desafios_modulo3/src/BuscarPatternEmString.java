@@ -1,3 +1,9 @@
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
+import static java.time.ZoneId.SHORT_IDS;
+
 /**
  * Escreva um algoritmo que receba um parâmetro String. *
  * Verificar se há 3 letras "X" em sequência entre dois números que somam 8. *
@@ -20,16 +26,24 @@ public class BuscarPatternEmString {
 
     public static void main(String... args) {
 
-        // 3 trues
-        /*System.out.println("regexAntigo " + verificarStringRegex("frdts2XXX6xxbl2XXXeee5", regexAntigo));
-        System.out.println("regexNovo " + verificarStringRegex("frdts2XXX6xxbl2XXXeee5", regexNovo));
-        System.out.println("semRegex " + verificarStringSemRegex("frdts2XXX6xxbl2XXXeee5"));
-        System.out.println();
+        ZonedDateTime zoneAmericana = ZonedDateTime.now().withZoneSameLocal(ZoneId.of("Australia/Brisbane"));
 
-        // 3 falses
-        System.out.println(verificarStringRegex("frdtsAXXX6xxbl2XXXeee5", regexAntigo));
-        System.out.println(verificarStringRegex("frdtsAXXX6xxbl2XXXeee5", regexNovo));
-        System.out.println(verificarStringSemRegex("frdtsAXXX6xxbl2XXXeee5"));*/
+        ZonedDateTime aus = Instant.now().atZone(ZoneId.of(SHORT_IDS.get("ECT")));
+        ZonedDateTime df = Instant.now().atZone(ZoneId.of("America/Sao_Paulo"));
+
+        System.out.println(aus);
+        System.out.println(df);
+
+        // 3 trues
+                /*System.out.println("regexAntigo " + verificarStringRegex("frdts2XXX6xxbl2XXXeee5", regexAntigo));
+                System.out.println("regexNovo " + verificarStringRegex("frdts2XXX6xxbl2XXXeee5", regexNovo));
+                System.out.println("semRegex " + verificarStringSemRegex("frdts2XXX6xxbl2XXXeee5"));
+                System.out.println();
+
+                // 3 falses
+                System.out.println(verificarStringRegex("frdtsAXXX6xxbl2XXXeee5", regexAntigo));
+                System.out.println(verificarStringRegex("frdtsAXXX6xxbl2XXXeee5", regexNovo));
+                System.out.println(verificarStringSemRegex("frdtsAXXX6xxbl2XXXeee5"));*/
 
         System.out.println(verificarStringSemRegexCharacter("frdtsAXXXAxxbl2XXXeee5"));
     }
@@ -70,7 +84,7 @@ public class BuscarPatternEmString {
             int valorAntesX = Integer.parseInt(String.valueOf(charAntesX));
             int valorDepoisX = Integer.parseInt(String.valueOf(charDepoisX));
 
-            if(valorAntesX + valorDepoisX == 8) {
+            if (valorAntesX + valorDepoisX == 8) {
                 return true;
             }
         }
@@ -85,7 +99,7 @@ public class BuscarPatternEmString {
      */
     static public boolean verificarStringSemRegex(String texto) {
         // Se não conter XXX já dá false.
-        if(!texto.contains("XXX")) {
+        if (!texto.contains("XXX")) {
             return false;
         }
 
@@ -98,16 +112,14 @@ public class BuscarPatternEmString {
          */
         try {
             valorAntesX = Integer.parseInt(String.valueOf(texto.charAt(texto.indexOf("XXX") - 1)));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("Antes do XXX não é um número");
             return false;
         }
 
         try {
             valorDepoisX = Integer.parseInt(String.valueOf(texto.charAt(texto.indexOf("XXX") + 3)));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println();
             System.err.println("Depois do XXX não é um número");
             return false;
