@@ -98,6 +98,6 @@ public class AplicarDesconto {
         abstract double taxaDesconto();
         abstract double multiplicarPorPorcentatem();
         abstract boolean isDiscountApplicable(int value);
-
     }
+
 }
