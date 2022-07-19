@@ -1,0 +1,4 @@
+NOME                              DATA NASC      CIDADE                        UF
+Ricardo Santos                    1980-10-05     Sao Paulo                     SP
+Joao Silva                        1975-03-20     Campinas                      SP
+Roberto Pereira                   1990-04-13     Rio de Janeiro                RJ
